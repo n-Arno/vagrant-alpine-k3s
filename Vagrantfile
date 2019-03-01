@@ -21,14 +21,14 @@ command_args="server"
 command_background="yes"
 command_user="root"
 pidfile="/run/k3s/k3s.pid"
-start_stop_daemon_args="--make-pidfile"
+start_stop_daemon_args="--make-pidfile -2 /var/log/k3s/server.log"
 
 depend() {
         need net
 }
 
 start_pre() {
-        checkpath --directory --owner root:root --mode 0775 /run/k3s
+        checkpath --directory --owner root:root --mode 0775 /run/k3s /var/log/k3s
 }
 EOF
 chmod +x /etc/init.d/k3s
